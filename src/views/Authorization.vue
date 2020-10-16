@@ -16,10 +16,10 @@
       >id сайта должен содержать 24 символа</small>
             <small class="helper-text invalid"
       v-else-if="$v.email.$dirty && !$v.email.maxLength"
-      >id сайта должен содержать "НЕ БОЛЬШЕ"  24 символов</small>
+      >id сайта должен содержать "НЕ БОЛЕЕ"  {{$v.email.$params.maxLength.max}} символов. Сейчас он {{email.length}}</small>
                   <small class="helper-text invalid"
       v-else-if="$v.email.$dirty && !$v.email.minLength"
-      >id сайта должен содержать "НЕ МЕНЬШЕ" 24 символов</small>
+      >id сайта должен содержать "НЕ МЕНЕЕ" {{$v.email.$params.minLength.min}} символов. Сейчас он {{email.length}}</small>
     </div>
   </div>
   <div class="card-action">
@@ -51,7 +51,14 @@ export default {
     submitHandler () {
       if (this.$v.$invalid) {
         this.$v.$touch()
+        return
       }
+      const formData = {
+        email: this.email
+      }
+
+      console.log(formData)
+      this.$router.push('/analytics')
     }
   }
 }
