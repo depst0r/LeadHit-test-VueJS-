@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/authorization">Авторизация</router-link> |
-      <router-link to="/analitics">Аналитика</router-link>
+      <router-link to="/analytics">Аналитика</router-link>
     </div>
     <router-view />
   </div>
