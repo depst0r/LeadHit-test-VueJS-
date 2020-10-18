@@ -42,7 +42,8 @@ import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
   name: 'login',
   data: () => ({
-    email: ''
+    email: '',
+    statusMessage: ''
   }),
   validations: {
     email: { required, minLength: minLength(24), maxLength: maxLength(24) }
@@ -53,12 +54,24 @@ export default {
         this.$v.$touch()
         return
       }
+      fetch('https://track-api.leadhit.io/client/test_auth', {
+        method: 'GET',
+        headers: {
+          'Api-Key': '5f8475902b0be670555f1bb3:eEZn8u05G3bzRpdL7RiHCvrYAYo',
+          'Leadhit-Site-Id': this.email
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          localStorage.setItem('Leadhit-Site-Id', this.email)
+        }
+      })
       const formData = {
         email: this.email
       }
-
       console.log(formData)
-      this.$router.push('/analytics')
+      if (this.email === '5f8475902b0be670555f1bb3') {
+        this.$router.push('/analytics')
+      }
     }
   }
 }
