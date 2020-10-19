@@ -1,5 +1,5 @@
 # Тестовое задания (Vuejs).
 # Запуск проекта 
-### yarn run serve
+### yarn start
 # Используется 
 ### json-server + concurrently
