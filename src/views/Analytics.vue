@@ -15,19 +15,19 @@ export default {
   data () {
     return {
       datacollection: {},
-      posts: []
+      analitycs: []
     }
   },
   async mounted () {
     const res = await fetch('http://localhost:3030/visits')
-    const posts = await res.json()
-    this.posts = posts
+    const analytics = await res.json()
+    this.analytics = analytics
     this.fillData()
   },
   methods: {
     fillData () {
       this.datacollection = {
-        labels: this.posts.map(res => res.date),
+        labels: this.analytics.map(res => res.date),
         datasets: [
           {
             label: 'Аналитика по визитам',
@@ -35,7 +35,7 @@ export default {
             pointBackgroundColor: 'Aqua',
             pointBorderColor: 'Aquamarine',
             backgroundColor: 'SkyBlue',
-            data: this.posts.map(res => res.visits)
+            data: this.analytics.map(res => res.visits)
           }
         ]
       }

@@ -8,33 +8,33 @@
           <input
             id="email"
             type="text"
-            v-model.trim="email"
+            v-model.trim="SiteId"
             :class="{
               invalid:
-                ($v.email.$dirty && !$v.email.required) ||
-                ($v.email.$dirty && !$v.email.minLength) ||
-                ($v.email.$dirty && !$v.email.maxLength),
+                ($v.SiteId.$dirty && !$v.SiteId.required) ||
+                ($v.SiteId.$dirty && !$v.SiteId.minLength) ||
+                ($v.SiteId.$dirty && !$v.SiteId.maxLength),
             }"
           />
           <label for="email">Leadhit-Site-Id</label>
           <small
             class="helper-text invalid"
-            v-if="$v.email.$dirty && !$v.email.required"
+            v-if="$v.SiteId.$dirty && !$v.SiteId.required"
             >id сайта должен содержать 24 символа</small
           >
           <small
             class="helper-text invalid"
-            v-else-if="$v.email.$dirty && !$v.email.maxLength"
+            v-else-if="$v.SiteId.$dirty && !$v.SiteId.maxLength"
             >id сайта должен содержать "НЕ БОЛЕЕ"
-            {{ $v.email.$params.maxLength.max }} символов. Сейчас он
-            {{ email.length }}</small
+            {{ $v.SiteId.$params.maxLength.max }} символов. Сейчас он
+            {{ SiteId.length }}</small
           >
           <small
             class="helper-text invalid"
-            v-else-if="$v.email.$dirty && !$v.email.minLength"
+            v-else-if="$v.SiteId.$dirty && !$v.SiteId.minLength"
             >id сайта должен содержать "НЕ МЕНЕЕ"
-            {{ $v.email.$params.minLength.min }} символов. Сейчас он
-            {{ email.length }}</small
+            {{ $v.SiteId.$params.minLength.min }} символов. Сейчас он
+            {{ SiteId.length }}</small
           >
         </div>
       </div>
@@ -58,11 +58,11 @@ import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
   name: 'login',
   data: () => ({
-    email: '',
+    SiteId: '',
     statusMessage: ''
   }),
   validations: {
-    email: { required, minLength: minLength(24), maxLength: maxLength(24) }
+    SiteId: { required, minLength: minLength(24), maxLength: maxLength(24) }
   },
   methods: {
     submitHandler () {
@@ -74,14 +74,14 @@ export default {
         method: 'GET',
         headers: {
           'Api-Key': '5f8475902b0be670555f1bb3:eEZn8u05G3bzRpdL7RiHCvrYAYo',
-          'Leadhit-Site-Id': this.email
+          'Leadhit-Site-Id': this.SiteId
         }
       }).then((res) => {
         if (res.status === 200) {
-          localStorage.setItem('Leadhit-Site-Id', this.email)
+          localStorage.setItem('Leadhit-Site-Id', this.SiteId)
         }
       })
-      if (this.email === '5f8475902b0be670555f1bb3') {
+      if (this.SiteId === '5f8475902b0be670555f1bb3') {
         this.$router.push('/analytics')
       }
     }
