@@ -1,4 +1,5 @@
-## To start the project use:
-```
-yarn start
-```
+# Тестовое задания (Vuejs).
+# Запуск проекта 
+### yarn run serve
+# Используется 
+### json-server + concurrently
